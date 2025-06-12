@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { name: 'Wiaxo Makrosu', rarity: 'covert', image: 'wiaxo.png' }
     ];
      const weights = {
-        common: 79, uncommon: 16, rare: 3.2, mythical: 0.64, legendary: 0.26, covert: 0.1
+        common: 50, uncommon: 16, rare: 3.2, mythical: 0.64, legendary: 0.26, covert: 0.1
     };
 
     // HTML elementleri
