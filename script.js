@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function createItemElement(item) {
         const itemDiv = document.createElement('div');
         itemDiv.classList.add('item', item.rarity);
-        // Kazananı daha sonra bulabilmek için özel bir data-attribute ekliyoruz.
+        // Kazananı daha sonra bulabilmek için özel bir data-attribute
         itemDiv.setAttribute('data-item-name', item.name);
         const itemImg = document.createElement('img');
         itemImg.src = imagePath + item.image;
