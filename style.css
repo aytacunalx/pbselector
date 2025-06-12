@@ -1,5 +1,4 @@
-/* :root içinde nadirlik renklerini ve diğer genel değişkenleri tanımlamak,
-   daha sonra kolayca değiştirmemizi sağlar. */
+
 :root {
     --common: #b0c3d9;
     --uncommon: #5e98d9;
@@ -8,12 +7,12 @@
     --legendary: #d32ce6;
     --ancient: #eb4b4b;
     --covert: #ffd700;
-    --background-color: #121822; /* Arkaplan resmi yüklenmezse görünecek renk */
+    --background-color: #121822; 
 }
 
 body {
-    /* --- ÖNEMLİ: Kendi arkaplan resmini buraya ekle --- */
-    background-image: url('arkaplan.jpg'); /* 'arkaplan.jpg' yerine kendi resim dosyanın adını yaz */
+    
+    background-image: url('bg01.jpg'); 
     background-color: var(--background-color);
     background-size: cover;
     background-position: center;
@@ -38,10 +37,10 @@ h1 {
 
 .case-container {
     width: 90%;
-    max-width: 1100px; /* Biraz daha genişlettik */
+    max-width: 1100px; 
     margin: 40px auto;
     position: relative;
-    /* --- DÜZELTME: Ürün boyutlarına uyum için yükseklik artırıldı --- */
+    
     height: 320px; 
 
     background: rgba(10, 15, 25, 0.45);
@@ -71,12 +70,10 @@ h1 {
     display: flex;
     height: 100%;
     
-    /* --- DÜZELTME 1: HAREKET BULANIKLIĞI KONTROLÜ --- */
-    /* Başlangıçta bulanıklık kesinlikle olmamalı. */
+   
     filter: blur(0px);
     
-    /* Hareket (transform) ve bulanıklık (filter) efektlerinin geçişlerini BİRLİKTE tanımlıyoruz. */
-    /* Bu, ikisinin her zaman senkronize olmasını sağlar. */
+    
     transition: transform 9s cubic-bezier(0.2, 1, 0.2, 1), 
                 filter 0.4s ease-in-out;
 }
@@ -85,7 +82,7 @@ h1 {
 }
 
 .item {
-    /* --- DÜZELTME: Ürün genişliği eski haline getirildi --- */
+   
     width: 300px; 
     height: 100%;
     display: flex;
@@ -95,12 +92,12 @@ h1 {
     box-sizing: border-box;
     padding: 20px 10px;
     border: none;
-    border-right: 2px solid rgba(255, 255, 255, 0.05); /* Ayırıcı çizgi daha estetik hale getirildi */
+    border-right: 2px solid rgba(255, 255, 255, 0.05); 
     background: transparent;
 }
 
 .item img {
-    /* --- DÜZELTME: Resim boyutları sabit ve büyük hale getirildi --- */
+    
     width: 240px; 
     height: 180px;
     object-fit: contain;
@@ -148,7 +145,7 @@ button:disabled {
 }
 
 
-/* --- KAZANMA EKRANI ANİMASYONU VE STİLLERİ (DÜZELTİLDİ) --- */
+
 #winning-overlay {
     position: fixed;
     top: 0;
@@ -173,7 +170,7 @@ button:disabled {
 
 #winning-item-card {
     text-align: center;
-    /* --- DÜZELTME: Bozulan animasyon geri eklendi --- */
+   
     animation: revealItem 1s forwards cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
@@ -191,7 +188,7 @@ button:disabled {
     text-shadow: 0 0 15px #000;
 }
 
-/* --- DÜZELTME: Eksik olan @keyframes animasyonu geri eklendi --- */
+
 @keyframes revealItem {
     from {
         opacity: 0;
@@ -209,30 +206,30 @@ button:disabled {
 }
 
 
-/* --- Footer Alanı Stilleri --- */
+
 footer {
-    position: fixed; /* Footer'ı ekranın en altına sabitler */
+    position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
     
-    /* Projenin genel tasarımıyla uyumlu "Buzlu Cam" efekti */
+   
     background: rgba(10, 15, 25, 0.6);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     
-    /* Üst tarafta ince bir ayırıcı çizgi */
+    
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     
-    padding: 15px 0; /* İç boşluk */
+    padding: 15px 0; 
     text-align: center;
-    z-index: 100; /* Diğer elementlerin üzerinde kalmasını sağlar */
+    z-index: 100; 
 }
 
 footer p {
     margin: 0;
     font-size: 14px;
-    color: #aab5c2; /* Yumuşak bir gri tonu */
-    letter-spacing: 1px; /* Harf aralığı */
+    color: #aab5c2;
+    letter-spacing: 1px;
     text-shadow: 1px 1px 3px #000;
 }
