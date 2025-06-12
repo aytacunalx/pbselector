@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Ürün listesi ve olasılık ağırlıkları
     const items = [
         { name: 'Fang Blade', rarity: 'common', image: 'fang.png' },
-        { name: 'Arda', rarity: 'common', image: 'duldul.png' },
         { name: 'R.B SS8M+S2', rarity: 'common', image: 'RB.png' },
         { name: 'Kalkan', rarity: 'common', image: 'sh.png' },
         { name: 'Saiga-12', rarity: 'common', image: 'saiga.png' },
