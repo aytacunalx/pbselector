@@ -1,0 +1,238 @@
+/* :root içinde nadirlik renklerini ve diğer genel değişkenleri tanımlamak,
+   daha sonra kolayca değiştirmemizi sağlar. */
+:root {
+    --common: #b0c3d9;
+    --uncommon: #5e98d9;
+    --rare: #4b69ff;
+    --mythical: #8847ff;
+    --legendary: #d32ce6;
+    --ancient: #eb4b4b;
+    --covert: #ffd700;
+    --background-color: #121822; /* Arkaplan resmi yüklenmezse görünecek renk */
+}
+
+body {
+    /* --- ÖNEMLİ: Kendi arkaplan resmini buraya ekle --- */
+    background-image: url('arkaplan.jpg'); /* 'arkaplan.jpg' yerine kendi resim dosyanın adını yaz */
+    background-color: var(--background-color);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    
+    color: #eaf0f6;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    overflow: hidden;
+}
+
+.main-content {
+    padding-top: 30px;
+}
+
+h1 {
+    font-weight: 200;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.case-container {
+    width: 90%;
+    max-width: 1100px; /* Biraz daha genişlettik */
+    margin: 40px auto;
+    position: relative;
+    /* --- DÜZELTME: Ürün boyutlarına uyum için yükseklik artırıldı --- */
+    height: 320px; 
+
+    background: rgba(10, 15, 25, 0.45);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+}
+
+.selector {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 100%;
+    z-index: 5;
+    background-color: #ffae00;
+    box-shadow: 0px 0px 12px 4px rgba(255, 174, 0, 0.7);
+}
+
+.case-roller {
+    display: flex;
+    height: 100%;
+    
+    /* --- DÜZELTME 1: HAREKET BULANIKLIĞI KONTROLÜ --- */
+    /* Başlangıçta bulanıklık kesinlikle olmamalı. */
+    filter: blur(0px);
+    
+    /* Hareket (transform) ve bulanıklık (filter) efektlerinin geçişlerini BİRLİKTE tanımlıyoruz. */
+    /* Bu, ikisinin her zaman senkronize olmasını sağlar. */
+    transition: transform 9s cubic-bezier(0.2, 1, 0.2, 1), 
+                filter 0.4s ease-in-out;
+}
+.case-roller.rolling {
+    filter: blur(1px);
+}
+
+.item {
+    /* --- DÜZELTME: Ürün genişliği eski haline getirildi --- */
+    width: 300px; 
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 20px 10px;
+    border: none;
+    border-right: 2px solid rgba(255, 255, 255, 0.05); /* Ayırıcı çizgi daha estetik hale getirildi */
+    background: transparent;
+}
+
+.item img {
+    /* --- DÜZELTME: Resim boyutları sabit ve büyük hale getirildi --- */
+    width: 240px; 
+    height: 180px;
+    object-fit: contain;
+    margin-bottom: 15px;
+    filter: drop-shadow(2px 4px 6px black);
+}
+
+.item p {
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    text-shadow: 2px 2px 5px #000;
+}
+
+.common { color: var(--common); }
+.uncommon { color: var(--uncommon); }
+.rare { color: var(--rare); }
+.mythical { color: var(--mythical); }
+.legendary { color: var(--legendary); }
+.ancient { color: var(--ancient); }
+.covert { color: var(--covert); }
+
+button {
+    background: rgba(102, 192, 244, 0.8);
+    border: 1px solid rgba(102, 192, 244, 1);
+    color: #fff;
+    padding: 15px 32px;
+    font-size: 18px;
+    margin: 20px 2px;
+    cursor: pointer;
+    border-radius: 10px;
+    font-weight: bold;
+    backdrop-filter: blur(5px);
+    transition: all 0.2s ease-in-out;
+}
+button:hover:not(:disabled) {
+    background: rgba(126, 211, 247, 1);
+    transform: scale(1.05);
+    box-shadow: 0px 0px 20px rgba(126, 211, 247, 0.5);
+}
+button:disabled {
+    background: rgba(85, 85, 85, 0.5);
+    border-color: rgba(85, 85, 85, 1);
+    cursor: not-allowed;
+}
+
+
+/* --- KAZANMA EKRANI ANİMASYONU VE STİLLERİ (DÜZELTİLDİ) --- */
+#winning-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(18, 24, 34, 0.7) 0%, rgba(18, 24, 34, 0.95) 90%);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 100;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#winning-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#winning-item-card {
+    text-align: center;
+    /* --- DÜZELTME: Bozulan animasyon geri eklendi --- */
+    animation: revealItem 1s forwards cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+#winning-item-card img {
+    width: 450px;
+    height: 360px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 35px var(--rarity-color, #fff)) drop-shadow(0 0 70px var(--rarity-color, #fff));
+}
+
+#winning-item-card p {
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-top: 20px;
+    text-shadow: 0 0 15px #000;
+}
+
+/* --- DÜZELTME: Eksik olan @keyframes animasyonu geri eklendi --- */
+@keyframes revealItem {
+    from {
+        opacity: 0;
+        transform: scale(0.5) translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+#continueBtn {
+    margin-top: 40px;
+    transform: scale(1.2);
+}
+
+
+/* --- Footer Alanı Stilleri --- */
+footer {
+    position: fixed; /* Footer'ı ekranın en altına sabitler */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    
+    /* Projenin genel tasarımıyla uyumlu "Buzlu Cam" efekti */
+    background: rgba(10, 15, 25, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    
+    /* Üst tarafta ince bir ayırıcı çizgi */
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    
+    padding: 15px 0; /* İç boşluk */
+    text-align: center;
+    z-index: 100; /* Diğer elementlerin üzerinde kalmasını sağlar */
+}
+
+footer p {
+    margin: 0;
+    font-size: 14px;
+    color: #aab5c2; /* Yumuşak bir gri tonu */
+    letter-spacing: 1px; /* Harf aralığı */
+    text-shadow: 1px 1px 3px #000;
+}
